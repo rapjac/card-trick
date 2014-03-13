@@ -1,0 +1,56 @@
+@import '_bootstrap/bootstrap';
+
+
+.card {
+	border: solid 1px #868686;
+	background-color: #f8f8f8;
+	height: 120px;
+	width: 100px;
+	border-radius: 3px;
+	padding: 5px;
+	margin: 10px;
+	font-weight: 800;
+	display: inline-block;
+
+	.card-rank-top {
+		font-size: 16px;
+		text-align: left;
+		height: 20px;
+		width: 100%;
+		line-height: 10px;
+	}
+
+	.card-body {
+		height: 70px;
+		width: 100%;
+		text-align: center;
+		font-size: 70px;
+		line-height: 50px;
+	}
+
+	.card-rank-bottom {
+		font-size: 16px;
+		text-align: right;
+		height: 20px;
+		width: 100%;
+  	}
+}
+
+.spades		{ color: #121212; .card-body:before { content: '♠'; } }
+.hearts		{ color: #AC1212; .card-body:before { content: '♠'; } }
+.clubs		{ color: #121212; .card-body:before { content: '♣'; } }
+.diamonds	{ color: #AC1212; .card-body:before { content: '♦'; } }
+
+.ace	{ .card-rank-top:before, .card-rank-bottom:before { content: 'A'; } }
+.two 	{ .card-rank-top:before, .card-rank-bottom:before { content: '2'; } }
+.three	{ .card-rank-top:before, .card-rank-bottom:before { content: '3'; } }
+.four	{ .card-rank-top:before, .card-rank-bottom:before { content: '4'; } }
+.five	{ .card-rank-top:before, .card-rank-bottom:before { content: '5'; } }
+.six	{ .card-rank-top:before, .card-rank-bottom:before { content: '6'; } }
+.seven	{ .card-rank-top:before, .card-rank-bottom:before { content: '7'; } }
+.eight	{ .card-rank-top:before, .card-rank-bottom:before { content: '8'; } }
+.nine	{ .card-rank-top:before, .card-rank-bottom:before { content: '9'; } }
+.ten	{ .card-rank-top:before, .card-rank-bottom:before { content: '10'; } }
+.jack	{ .card-rank-top:before, .card-rank-bottom:before { content: 'J'; } }
+.queen	{ .card-rank-top:before, .card-rank-bottom:before { content: 'Q'; } }
+.king	{ .card-rank-top:before, .card-rank-bottom:before { content: 'K'; } }
