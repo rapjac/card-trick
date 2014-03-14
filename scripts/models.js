@@ -3,25 +3,25 @@ var Card = Backbone.Model.extend({
     rank: 0,
     suit: 0
   },
-  // rankMap: [
-  //   'Ace', 'Two', 'Three', 'Four', 'Five',
-  //   'Six', 'Seven', 'Eight', 'Nine', 'Ten',
-  //   'Jack', 'Queen', 'King'
-  // ],
-  // suitMap: [
-  //   'Diamonds', 'Clubs', 'Hearts', 'Spades'
-  // ],
-  rankMap: [
-    'A', '2', '3', '4', '5',
-    '6', '7', '8', '9', '10',
-    'J', 'Q', 'K'
-  ],
-  suitMap: [
-    '♦', '♣', '♥', '♠'
-  ],
+  stringMap: {
+    rank: [
+      'Ace', 'Two', 'Three', 'Four', 'Five',
+      'Six', 'Seven', 'Eight', 'Nine', 'Ten',
+      'Jack', 'Queen', 'King'
+    ],
+    suit: [
+      'Diamonds', 'Clubs', 'Hearts', 'Spades'
+    ]
+  },
+  symbolMap: {
+    rank: ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'],
+    suit: ['♦', '♣', '♥', '♠']
+  },
+  getSymbol: function () {
+    return this.symbolMap['suit'][this.get('suit')] + '' + this.symbolMap['rank'][this.get('rank')];
+  },
   toString: function () {
-    // return this.rankMap[this.get('rank')] + this.suitMap[this.get('suit')];
-    return this.suitMap[this.get('suit')] + '' + this.rankMap[this.get('rank')]
+    return this.stringMap['rank'][this.get('rank')] + ' of ' + this.stringMap['suit'][this.get('suit')];
   }
 });
 
@@ -49,7 +49,7 @@ var Deck = Backbone.Collection.extend({
   toString: function () {
     cards = [];
     for(var i = 0; i < this.models.length; i++) {
-      cards.push(this.models[i].toString());
+      cards.push(this.models[i].getSymbol());
     }
     return cards;
   }
