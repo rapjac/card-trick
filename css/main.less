@@ -1,5 +1,16 @@
 @import '_bootstrap/bootstrap';
 
+#trick {
+	padding: 30px 0;
+
+	.row {
+		padding: 10px;
+	}
+}
+
+#number-container {
+	font-size: 128px;
+}
 
 .card {
 	border: solid 1px #868686;
@@ -11,6 +22,7 @@
 	margin: 10px;
 	font-weight: 800;
 	display: inline-block;
+	.box-shadow(3px 3px 7px rgba(0,0,0,0.3));
 
 	.card-rank-top {
 		font-size: 16px;
@@ -36,21 +48,51 @@
   	}
 }
 
-.spades		{ color: #121212; .card-body:before { content: '♠'; } }
-.hearts		{ color: #AC1212; .card-body:before { content: '♠'; } }
-.clubs		{ color: #121212; .card-body:before { content: '♣'; } }
-.diamonds	{ color: #AC1212; .card-body:before { content: '♦'; } }
+.spades		{ color: #121212; .card-body:before, .card-rank-top:after, .card-rank-bottom:after { content: '♠'; } }
+.hearts		{ color: #AC1212; .card-body:before, .card-rank-top:after, .card-rank-bottom:after { content: '♥'; } }
+.clubs		{ color: #121212; .card-body:before, .card-rank-top:after, .card-rank-bottom:after { content: '♣'; } }
+.diamonds	{ color: #AC1212; .card-body:before, .card-rank-top:after, .card-rank-bottom:after { content: '♦'; } }
 
-.ace	{ .card-rank-top:before, .card-rank-bottom:before { content: 'A'; } }
-.two 	{ .card-rank-top:before, .card-rank-bottom:before { content: '2'; } }
-.three	{ .card-rank-top:before, .card-rank-bottom:before { content: '3'; } }
-.four	{ .card-rank-top:before, .card-rank-bottom:before { content: '4'; } }
-.five	{ .card-rank-top:before, .card-rank-bottom:before { content: '5'; } }
-.six	{ .card-rank-top:before, .card-rank-bottom:before { content: '6'; } }
-.seven	{ .card-rank-top:before, .card-rank-bottom:before { content: '7'; } }
-.eight	{ .card-rank-top:before, .card-rank-bottom:before { content: '8'; } }
-.nine	{ .card-rank-top:before, .card-rank-bottom:before { content: '9'; } }
-.ten	{ .card-rank-top:before, .card-rank-bottom:before { content: '10'; } }
-.jack	{ .card-rank-top:before, .card-rank-bottom:before { content: 'J'; } }
-.queen	{ .card-rank-top:before, .card-rank-bottom:before { content: 'Q'; } }
-.king	{ .card-rank-top:before, .card-rank-bottom:before { content: 'K'; } }
+.ace	{ .card-rank-top:before, .card-rank-bottom:before { content: 'A '; } }
+.two 	{ .card-rank-top:before, .card-rank-bottom:before { content: '2 '; } }
+.three	{ .card-rank-top:before, .card-rank-bottom:before { content: '3 '; } }
+.four	{ .card-rank-top:before, .card-rank-bottom:before { content: '4 '; } }
+.five	{ .card-rank-top:before, .card-rank-bottom:before { content: '5 '; } }
+.six	{ .card-rank-top:before, .card-rank-bottom:before { content: '6 '; } }
+.seven	{ .card-rank-top:before, .card-rank-bottom:before { content: '7 '; } }
+.eight	{ .card-rank-top:before, .card-rank-bottom:before { content: '8 '; } }
+.nine	{ .card-rank-top:before, .card-rank-bottom:before { content: '9 '; } }
+.ten	{ .card-rank-top:before, .card-rank-bottom:before { content: '10 '; } }
+.jack	{ .card-rank-top:before, .card-rank-bottom:before { content: 'J '; } }
+.queen	{ .card-rank-top:before, .card-rank-bottom:before { content: 'Q '; } }
+.king	{ .card-rank-top:before, .card-rank-bottom:before { content: 'K '; } }
+
+.card-stacked {
+	position: absolute;
+}
+
+.card-index-0 { top: 0px;		left: 100px;	z-index: 1; };
+.card-index-1 { top: 40px;		left: 110px;	z-index: 2; };
+.card-index-2 { top: 80px;		left: 120px;	z-index: 3; };
+.card-index-3 { top: 120px;		left: 130px;	z-index: 4; };
+.card-index-4 { top: 160px;		left: 140px;	z-index: 5; };
+.card-index-5 { top: 200px;		left: 150px;	z-index: 6; };
+.card-index-6 { top: 240px;		left: 160px;	z-index: 7; };
+.card-index-7 { top: 280px;		left: 170px;	z-index: 8; };
+.card-index-8 { top: 320px;		left: 180px;	z-index: 9; };
+
+.pile .card {
+	.transition-transform(0.3s linear);
+}
+
+.pile:hover {
+	.card-index-0 { .rotate(15deg) };
+	.card-index-1 { .rotate(20deg) };
+	.card-index-2 { .rotate(25deg) };
+	.card-index-3 { .rotate(30deg) };
+	.card-index-4 { .rotate(35deg) };
+	.card-index-5 { .rotate(40deg) };
+	.card-index-6 { .rotate(45deg) };
+	.card-index-7 { .rotate(50deg) };
+	.card-index-8 { .rotate(55deg) };
+}
