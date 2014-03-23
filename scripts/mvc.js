@@ -98,10 +98,6 @@ var Trick = Backbone.Model.extend({
   },
   doStateLogic: function () {
     switch(this.get('state')) {
-      case 0:
-        break;
-      case 1:
-        break;
       case 2:
         this.splitDeck();
         break;
@@ -114,6 +110,7 @@ var Trick = Backbone.Model.extend({
       case 5:
         this.splitDeck();
         break;
+      default:
     }
   },
   splitDeck: function () {
@@ -166,6 +163,11 @@ var Trick = Backbone.Model.extend({
       ternaryNumber = parseInt(ternaryNumber / 10);
     }
     this.set('sortOrder', sortOrder);
+  },
+  reset: function () {
+    this.set('state', 0);
+    this.set('number', 1);
+    this.set('deck', new Deck());
   }
 });
 
@@ -180,9 +182,9 @@ var TrickView = Backbone.View.extend({
     'click .decrement': 'decrementNumber',
     'click .chooseNumber': 'chooseNumber',
     'click .pile' : 'choosePile',
+    'click .reset' : 'reset',
     'keyup': 'enterNumber',
   },
-  USING_CLI: false,
   initialize: function () {
     this.listenTo(this.model, 'change:state', this.render);
     this.listenTo(this.model, 'change:number', this.renderNumber);
@@ -204,13 +206,13 @@ var TrickView = Backbone.View.extend({
           this.pickNumber();
         break;
       case 2:
-          this.pickPile();
+          this.pickPile(1);
         break;
       case 3:
-          this.pickPile();
+          this.pickPile(2);
         break;
       case 4:
-          this.pickPile();
+          this.pickPile(3);
         break;
       case 5:
           this.revealCard();
@@ -221,47 +223,6 @@ var TrickView = Backbone.View.extend({
   renderNumber: function () {
     var template = _.template($('#number-template').html())({number: this.model.get('number')});
     $(this.numberElement).html(template);
-  },
-  renderStateCli: function (state) {
-    switch(state) {
-      case 0:
-        console.log('Pick a Card!');
-        console.log(this.model.get('trickDeck').toString());
-        break;
-      case 1:
-        console.log('Pick a Number between 1 and 27!');
-        break;
-      case 2:
-        console.log('Watch for your card! Tell me which pile it is in!');
-        console.log('Pile 1:');
-        console.log(this.model.get('pile1').toString());
-        console.log('Pile 2:');
-        console.log(this.model.get('pile2').toString());
-        console.log('Pile 3:');
-        console.log(this.model.get('pile3').toString());
-        break;
-      case 3:
-        console.log('One more time! Watch for your card!');
-        console.log('Pile 1:');
-        console.log(this.model.get('pile1').toString());
-        console.log('Pile 2:');
-        console.log(this.model.get('pile2').toString());
-        console.log('Pile 3:');
-        console.log(this.model.get('pile3').toString());
-        break;
-      case 4:
-        console.log('You know the drill! Where is your card?');
-        console.log('Pile 1:');
-        console.log(this.model.get('pile1').toString());
-        console.log('Pile 2:');
-        console.log(this.model.get('pile2').toString());
-        console.log('Pile 3:');
-        console.log(this.model.get('pile3').toString());
-        break;
-      case 5:
-        console.log('Your card is the ' + this.model.get('trickDeck').models[this.model.get('number') - 1].toString());
-        break;
-    }
   },
   renderTemplate: function (selector, options) {
     template = _.template($(selector).html())(options);
@@ -275,13 +236,34 @@ var TrickView = Backbone.View.extend({
     this.renderTemplate('#pick-number-template', {number: this.model.get('number')});
     this.$el.fadeIn();
   },
-  pickPile: function () {
+  pickPile: function (passNumber) {
     this.renderTemplate('#pick-pile-template', {
       pile1: this.model.get('pile1').models,
       pile2: this.model.get('pile2').models,
       pile3: this.model.get('pile3').models,
     });
+    $('.card').hide();
+
+    switch(passNumber) {
+      case 1: 
+        $('.trick-title').text('Watch for your card!');
+        break;
+      case 2:
+        $('.trick-title').text('One more time! Watch for your card!');
+        break;
+      case 3:
+        $('.trick-title').text('You know the drill!');
+        break;
+      default:
+    }
+
     this.$el.fadeIn();
+    $('.card').each(function (i) {
+      $(this).delay(++i * 500).fadeIn(1000);
+    });
+    $('.card').promise().done( function () {
+      $('.trick-title').text('Click on the pile that has your card!');
+    });
   },
   revealCard: function () {
     var number = this.model.get('number')
@@ -292,6 +274,7 @@ var TrickView = Backbone.View.extend({
     });
     this.$el.html(template);
     $('.trick-title').hide();
+    $('.reset').hide();
     $('.card').hide();
     this.$el.fadeIn();
     $('.card').each(function (i) {
@@ -299,6 +282,7 @@ var TrickView = Backbone.View.extend({
     });
     $('.card').promise().done( function () {
       $('.trick-title').fadeIn();
+      $('.reset').fadeIn();
     });
   },
   nextState: function (event) {
@@ -331,4 +315,7 @@ var TrickView = Backbone.View.extend({
     this.model.merge(pile, placement);
     this.model.nextState();
   },
+  reset: function () {
+    this.model.reset();
+  }
 });

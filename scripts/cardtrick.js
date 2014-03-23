@@ -1,5 +1,3 @@
-var trick = new TrickView();
-
 $(function () {
-
+	var trick = new TrickView();
 });

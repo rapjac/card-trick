@@ -1,18 +1,11 @@
 #trick.container
 
-
-script(id="card-template" type='text/template')
-	.card
-		.card-rank-top
-		.card-body
-		.card-rank-bottom
-
 script(id="pick-card-template" type='text/template')
 	.row
 		.col-md-12.text-center
 			h1.trick-title Pick a Card!
 	.row
-		.col-md-12.text-center.
+		.col-md-12.text-center.cards-container.
 				<% _.each(cards, function (card) { %>
 					<div class="card <%= card.getClass() %>">
 						<div class="card-rank-top"></div>
@@ -86,7 +79,7 @@ script(id="reveal-card-template" type='text/template')
 	.row
 		.col-md-12.text-center.
 				<% _.each(cards, function (card) { %>
-					<div class="card <%= card.getClass() %>">
+					<div class="card <%= card.getClass() %> back">
 						<div class="card-rank-top"></div>
 						<div class="card-body"></div>
 						<div class="card-rank-bottom"></div>

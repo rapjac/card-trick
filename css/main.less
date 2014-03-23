@@ -2,6 +2,7 @@
 
 #trick {
 	padding: 30px 0;
+	.perspective(900px);
 
 	.row {
 		padding: 10px;
@@ -23,6 +24,8 @@
 	font-weight: 800;
 	display: inline-block;
 	.box-shadow(3px 3px 7px rgba(0,0,0,0.3));
+	.transition-transform(0.3s linear);
+	.transform-origin(100% 100%);
 
 	.card-rank-top {
 		font-size: 16px;
@@ -81,18 +84,14 @@
 .card-index-7 { top: 280px;		left: 170px;	z-index: 8; };
 .card-index-8 { top: 320px;		left: 180px;	z-index: 9; };
 
-.pile .card {
-	.transition-transform(0.3s linear);
+.pile:hover {
+	.card {
+		.rotateX(-30deg);
+	}
 }
 
-.pile:hover {
-	.card-index-0 { .rotate(15deg) };
-	.card-index-1 { .rotate(20deg) };
-	.card-index-2 { .rotate(25deg) };
-	.card-index-3 { .rotate(30deg) };
-	.card-index-4 { .rotate(35deg) };
-	.card-index-5 { .rotate(40deg) };
-	.card-index-6 { .rotate(45deg) };
-	.card-index-7 { .rotate(50deg) };
-	.card-index-8 { .rotate(55deg) };
+.cards-container {
+	.card:hover {
+		.rotateX(-35deg);
+	}
 }
