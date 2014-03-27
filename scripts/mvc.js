@@ -259,7 +259,7 @@ var TrickView = Backbone.View.extend({
 
     this.$el.fadeIn();
     $('.card').each(function (i) {
-      $(this).delay(++i * 500).fadeIn(1000);
+      $(this).delay(++i * 250).fadeIn(500);
     });
     $('.card').promise().done( function () {
       $('.trick-title').text('Click on the pile that has your card!');
@@ -278,9 +278,9 @@ var TrickView = Backbone.View.extend({
     $('.card').hide();
     this.$el.fadeIn();
     $('.card').each(function (i) {
-      $(this).delay(++i * 500).fadeIn(1000);
+      $(this).delay(i * 250).fadeIn(500);
     });
-    $('.card').promise().done( function () {
+    $('.card').promise().done(function () {
       $('.trick-title').fadeIn();
       $('.reset').fadeIn();
     });
