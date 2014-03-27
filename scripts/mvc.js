@@ -267,22 +267,19 @@ var TrickView = Backbone.View.extend({
   },
   revealCard: function () {
     var number = this.model.get('number')
-    var cards = this.model.get('trickDeck').models.slice(0, this.model.get('number'));
+    var cards = this.model.get('trickDeck').models;
     this.renderTemplate('#reveal-card-template',{
       cards: cards,
       number: number
     });
     this.$el.html(template);
     $('.trick-title').hide();
-    $('.reset').hide();
     $('.card').hide();
     this.$el.fadeIn();
-    $('.card').each(function (i) {
-      $(this).delay(i * 250).fadeIn(500);
-    });
+    $('.card').fadeIn(5000);
     $('.card').promise().done(function () {
       $('.trick-title').fadeIn();
-      $('.reset').fadeIn();
+      $('.card:eq(' + (number - 1) + ')').addClass('reveal');
     });
   },
   nextState: function (event) {

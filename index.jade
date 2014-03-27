@@ -75,7 +75,7 @@ script(id="pick-pile-template" type='text/template')
 script(id="reveal-card-template" type='text/template')
 	.row
 		.col-md-12.text-center
-			h1.trick-title Your card is the <%= cards[number - 1].toString() %>!
+			h1.trick-title The <%= cards[number - 1].toString() %>... is that your card?
 	.row
 		.col-md-12.text-center.
 				<% _.each(cards, function (card) { %>
