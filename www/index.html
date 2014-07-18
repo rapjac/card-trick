@@ -1,0 +1,32 @@
+<!DOCTYPE html><html></html><head><title>27 Cards Trick</title><link rel="stylesheet" href="/css/main.css"></head><body><div id="trick" class="container"></div><script id="pick-card-template" type="text/template"><div class="row"><div class="col-md-12 text-center"><h1 class="trick-title">Pick a Card!</h1></div></div><div class="row"><div class="col-md-12 text-center cards-container"><% _.each(cards, function (card) { %>
+ <div class="card <%= card.getClass() %>">
+  <div class="card-rank-top"></div>
+  <div class="card-body"></div>
+  <div class="card-rank-bottom"></div>
+ </div>
+<% }) %></div></div><div class="row"><div class="col-md-12 text-center"><a href="#" class="btn btn-lg btn-success next-state">Got it!</a></div></div></script><script id="pick-number-template" type="text/template"><div class="row"><div class="col-md-12 text-center"><h1 class="trick-title">Pick a Number between 1 and 27!</h1></div></div><div class="row"><div class="col-md-12 text-center"><h1 id="number-container"><%= number %></h1></div></div><div class="row"><div class="col-md-4 col-md-offset-4"><div class="col-md-4 text-center"><a href="#" class="btn btn-lg btn-primary decrement"><span class="glyphicon glyphicon-minus"></span></a></div><div class="col-md-4 text-center"><input id="number-input" class="form-control"/></div><div class="col-md-4 text-center"><a href="#" class="btn btn-lg btn-primary increment"><span class="glyphicon glyphicon-plus"></span></a></div></div></div><div class="row"><div class="col-md-12 text-center"><a href="#" class="btn btn-lg btn-success chooseNumber">Choose Number!</a></div></div></script><script id="number-template" type="text/template"><%= number %></script><script id="pick-pile-template" type="text/template"><div class="row"><div class="col-md-12 text-center"><h1 class="trick-title">Watch for your card!</h1></div></div><div class="row"><div data-pile='1' class="pile col-md-4 text-center"><% _.each(pile1, function (card, index) { %>
+ <div class="card <%= card.getClass() %> card-stacked card-index-<%= index %>">
+  <div class="card-rank-top"></div>
+  <div class="card-body"></div>
+  <div class="card-rank-bottom"></div>
+ </div>
+<% }) %></div><div data-pile='2' class="pile col-md-4 text-center"><% _.each(pile2, function (card, index) { %>
+ <div class="card <%= card.getClass() %> card-stacked card-index-<%= index %>">
+  <div class="card-rank-top"></div>
+  <div class="card-body"></div>
+  <div class="card-rank-bottom"></div>
+ </div>
+<% }) %></div><div data-pile='3' class="pile col-md-4 text-center"><% _.each(pile3, function (card, index) { %>
+ <div class="card <%= card.getClass() %> card-stacked card-index-<%= index %>">
+  <div class="card-rank-top"></div>
+  <div class="card-body"></div>
+  <div class="card-rank-bottom"></div>
+ </div>
+<% }) %>
+</div></div></script><script id="reveal-card-template" type="text/template"><div class="row"><div class="col-md-12 text-center"><h1 class="trick-title">The <%= cards[number - 1].toString() %>... is that your card?</h1></div></div><div class="row"><div class="col-md-12 text-center"><% _.each(cards, function (card) { %>
+ <div class="card <%= card.getClass() %>">
+  <div class="card-rank-top"></div>
+  <div class="card-body"></div>
+  <div class="card-rank-bottom"></div>
+ </div>
+<% }) %></div></div></script><script src="/scripts/jquery-1.11.0.min.js"></script><script src="/scripts/underscore-min.js"></script><script src="/scripts/backbone-min.js"></script><script src="/scripts/mvc.js"></script><script src="/scripts/cardtrick.js"></script></body>
