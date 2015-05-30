@@ -1,0 +1,87 @@
+#trick.container
+
+script(id="pick-card-template" type='text/template')
+	.row
+		.col-md-12.text-center
+			h1.trick-title Pick a Card!
+	.row
+		.col-md-12.text-center.cards-container.
+				<% _.each(cards, function (card) { %>
+					<div class="card <%= card.getClass() %>">
+						<div class="card-rank-top"></div>
+						<div class="card-body"></div>
+						<div class="card-rank-bottom"></div>
+					</div>
+				<% }) %>
+	.row
+		.col-md-12.text-center
+			a.btn.btn-lg.btn-success.next-state(href="#") Click Me When You're Done!
+
+script(id="pick-number-template" type='text/template')
+	.row
+		.col-md-12.text-center
+			h1.trick-title Pick a Number between 1 and 27!
+	.row
+		.col-md-12.text-center
+			h1#number-container <%= number %>
+	.row
+		.col-md-4.col-md-offset-4
+			.col-md-4.text-center
+				a.btn.btn-lg.btn-primary.decrement(href="#")
+					span.glyphicon.glyphicon-minus
+			.col-md-4.text-center
+				input#number-input.form-control
+			.col-md-4.text-center
+				a.btn.btn-lg.btn-primary.increment(href="#")
+					span.glyphicon.glyphicon-plus
+	.row
+		.col-md-12.text-center
+			a.btn.btn-lg.btn-success.chooseNumber(href="#") Choose Number!
+
+script(id="number-template" type="text/template")
+	<%= number %>
+
+
+script(id="pick-pile-template" type='text/template')
+	.row
+		.col-md-12.text-center
+			h1.trick-title Watch for your card!
+	.row
+		.pile.col-md-4.text-center(data-pile=1).
+			<% _.each(pile1, function (card, index) { %>
+				<div class="card <%= card.getClass() %> card-stacked card-index-<%= index %>">
+					<div class="card-rank-top"></div>
+					<div class="card-body"></div>
+					<div class="card-rank-bottom"></div>
+				</div>
+			<% }) %>
+		.pile.col-md-4.text-center(data-pile=2).
+			<% _.each(pile2, function (card, index) { %>
+				<div class="card <%= card.getClass() %> card-stacked card-index-<%= index %>">
+					<div class="card-rank-top"></div>
+					<div class="card-body"></div>
+					<div class="card-rank-bottom"></div>
+				</div>
+			<% }) %>
+		.pile.col-md-4.text-center(data-pile=3).
+			<% _.each(pile3, function (card, index) { %>
+				<div class="card <%= card.getClass() %> card-stacked card-index-<%= index %>">
+					<div class="card-rank-top"></div>
+					<div class="card-body"></div>
+					<div class="card-rank-bottom"></div>
+				</div>
+			<% }) %>
+
+script(id="reveal-card-template" type='text/template')
+	.row
+		.col-md-12.text-center
+			h1.trick-title The <%= cards[number - 1].toString() %>... is that your card?
+	.row
+		.col-md-12.text-center.
+				<% _.each(cards, function (card) { %>
+					<div class="card <%= card.getClass() %>">
+						<div class="card-rank-top"></div>
+						<div class="card-body"></div>
+						<div class="card-rank-bottom"></div>
+					</div>
+				<% }) %>
