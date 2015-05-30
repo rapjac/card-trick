@@ -245,7 +245,7 @@ var TrickView = Backbone.View.extend({
     $('.card').hide();
 
     switch(passNumber) {
-      case 1: 
+      case 1:
         $('.trick-title').text('Watch for your card!');
         break;
       case 2:
@@ -279,7 +279,7 @@ var TrickView = Backbone.View.extend({
     $('.card').fadeIn(5000);
     $('.card').promise().done(function () {
       $('.trick-title').fadeIn();
-      $('.card:eq(' + (number - 1) + ')').addClass('reveal');
+      $('.card:eq(' + number - 1 + ')').addClass('reveal');
     });
   },
   nextState: function (event) {
